@@ -1,0 +1,35 @@
+<!-- <p>{{cartService.getUserCart()|json}}</p> -->
+<!-- 
+<div class="cart">
+    <div *ngFor="let cart of carts">
+        <h5>{{cart.productId}}</h5>
+        <div>
+            <button class="btn btn-sm btn-primary" (click)="minusCartItem.emit(cart.productId)">-</button>
+            <span>{{cart.count}}</span>
+            <button class=" btn btn-sm btn-primary" (click)="addCartItem.emit(cart.productId)">+</button>
+            <button class="btn btn-sm btn-danger" (click)="removeCartItem.emit(cart.productId)">Remove</button>
+        </div>
+    </div>
+</div> -->
+
+<div class="card d-flex" *ngIf="cartService.getSelectedUser()">
+    <div class="card-body">
+        <h4 class="card-title">User: {{ cartService.getSelectedUser()?.fullName }}</h4>
+        <div *ngFor="let object of cartService.getUserCart()?.objects" class="row">
+            <div class="col-6">
+                <p>Product: {{ object.productName }}</p>
+                <p>Price: {{ object.productPrice }}</p>
+                <button class="btn btn-sm btn-danger" (click)="cartService.decrement(object.productId)">-</button>
+                <span>{{object.count}}</span>
+                <button class="btn btn-sm btn-success"
+                    (click)="cartService.addCartGet(object.productId); this.cartService.calculations();">+</button>
+                <button class="btn btn-danger" (click)="cartService.removeItem(object.productId)">Remove</button>
+                <!-- <input type="number" min="1" [(ngModel)]="item.count" class="form-control"
+                    (change)="cartService.calculations()" /> -->
+                    <div>
+                        
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
